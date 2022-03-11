@@ -8,9 +8,11 @@ import {
   TopImage,
   TopIcon,
   SearchIcon,
+  StyledLink,
 } from './topbar.style'
 
 const Topbar = () => {
+  const user = true
   return (
     <Container>
       <TopLeft>
@@ -21,11 +23,21 @@ const Topbar = () => {
       </TopLeft>
       <TopCenter>
         <TopCenterUl>
-          <TopCenterLi>HOME</TopCenterLi>
-          <TopCenterLi>ABOUT</TopCenterLi>
-          <TopCenterLi>CONTACT</TopCenterLi>
-          <TopCenterLi>WRITE</TopCenterLi>
-          <TopCenterLi>LOGOUT</TopCenterLi>
+          <TopCenterLi>
+            <StyledLink to="/">HOME</StyledLink>
+          </TopCenterLi>
+
+          <TopCenterLi>
+            <StyledLink to="/about">ABOUT</StyledLink>
+          </TopCenterLi>
+
+          <TopCenterLi>
+            <StyledLink to="/writepost">WRITE</StyledLink>
+          </TopCenterLi>
+
+          <TopCenterLi>
+            <StyledLink to="/login">{user ? 'LOGOUT' : 'LOGIN'}</StyledLink>
+          </TopCenterLi>
         </TopCenterUl>
       </TopCenter>
       <TopRight>
