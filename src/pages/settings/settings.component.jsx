@@ -37,6 +37,8 @@ const Settings = () => {
             <input type="file" id="Fileinput" hidden />
           </SttingsPP>
 
+          <Label>Bio</Label>
+          <TextInput type="text" placeholder="Bio" />
           <Label>Username</Label>
           <TextInput type="text" placeholder="Username" />
           <Label>Email</Label>

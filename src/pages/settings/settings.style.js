@@ -23,7 +23,7 @@ export const SettingsDeleteTitle = styled.span`
   cursor: pointer;
   padding: 10px;
   color: red;
-  transition: all 0.2ms ease-in-out;
+  transition: all 0.1s ease-in-out;
   :hover {
     background-color: red;
     color: white;
@@ -36,10 +36,56 @@ export const SettingsForm = styled.form`
 export const PPLabel = styled.label``
 export const SttingsPP = styled.div`
   display: flex;
-  align-items: center; 
+  align-items: center;
+  margin: 10px 0;
 `
-export const PPImage = styled.img``
-export const PPUserIcon = styled.i``
-export const Label = styled.label``
-export const TextInput = styled.input``
-export const SettingsSubmit = styled.button``
+export const PPImage = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+  object-fit: cover;
+`
+export const PPUserIcon = styled.i`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 15px;
+  background-color: black;
+  color: white;
+`
+export const Label = styled.label`
+  font-size: 20px;
+  margin-top: 20px;
+`
+export const TextInput = styled.input`
+  color: gray;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  height: 25px;
+  font-size: 15px;
+  :focus {
+    outline: none;
+  }
+`
+export const SettingsSubmit = styled.button`
+  margin-top: 10px;
+  border: none;
+  align-self: center;
+  width: 250px;
+  background-color: teal;
+  color: white;
+  padding: 15px;
+  transition: all 0.1s ease-in-out;
+  border-radius: 10px;
+  cursor: pointer;
+  :hover {
+    background-color: #6ed0bf;
+    color: black;
+    font-weight: bolder;
+  }
+`
