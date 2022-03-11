@@ -16,7 +16,7 @@ const SinglePost = () => {
   return (
     <Container>
       <SinglePostWrapper>
-        <SinglePostImage src="assets/post1.jpg" alt="post by user" />
+        <SinglePostImage src="/assets/post1.jpg" alt="post by user" />
         <SinglePostTitle>
           Bought new desktop
           <SinglePostEdit>
