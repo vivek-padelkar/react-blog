@@ -12,7 +12,7 @@ import {
 } from './topbar.style'
 
 const Topbar = () => {
-  const user = true
+  const user = false
   return (
     <Container>
       <TopLeft>
@@ -21,6 +21,7 @@ const Topbar = () => {
         <TopIcon className="fa-brands fa-pinterest" />
         <TopIcon className="fa-brands fa-instagram" />
       </TopLeft>
+
       <TopCenter>
         <TopCenterUl>
           <TopCenterLi>
@@ -36,15 +37,21 @@ const Topbar = () => {
           </TopCenterLi>
 
           <TopCenterLi>
-            <StyledLink to="/login">{user ? 'LOGOUT' : 'LOGIN'}</StyledLink>
+            <StyledLink to="/login">{user ? 'LOGOUT' : null}</StyledLink>
           </TopCenterLi>
         </TopCenterUl>
       </TopCenter>
+
       <TopRight>
-        <TopImage
-          src="https://avatars.githubusercontent.com/u/90445381?v=4"
-          alt="user"
-        />
+        {user ? (
+          <TopImage
+            src="https://avatars.githubusercontent.com/u/90445381?v=4"
+            alt="user"
+          />
+        ) : (
+          <StyledLink to="/login">LOGIN/REGISTER</StyledLink>
+        )}
+
         <SearchIcon className="fa-solid fa-magnifying-glass" />
       </TopRight>
     </Container>

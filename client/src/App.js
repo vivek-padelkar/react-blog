@@ -10,7 +10,7 @@ import NotFound from './pages/not-found/not-found.component'
 import About from './pages/about/about.component'
 
 function App() {
-  const user = true
+  const user = false
   return (
     <Router>
       <Topbar />

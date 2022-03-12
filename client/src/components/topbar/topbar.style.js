@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { mobile } from '../../utils/responsive'
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -12,8 +13,11 @@ export const Container = styled.div`
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-family: 'Josefin Sans', sans-serif;
   z-index: 999;
+  @media screen and (max-width: 800px) {
+  }
 `
 
 export const TopLeft = styled.div`
@@ -21,9 +25,19 @@ export const TopLeft = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `
 export const TopCenter = styled.div`
   flex: 6;
+
+  @media screen and (max-width: 800px) {
+    flex: 7;
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 export const TopRight = styled.div`
@@ -31,12 +45,19 @@ export const TopRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+  }
 `
 export const TopCenterUl = styled.ul`
   display: flex;
   list-style: none;
   justify-content: center;
   gap: 20px;
+
+  @media screen and (max-width: 800px) {
+    justify-content: space-around;
+  }
 `
 export const TopCenterLi = styled.li`
   font-size: 18px;

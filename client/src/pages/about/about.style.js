@@ -15,9 +15,10 @@ export const MainBackground = styled.div`
 `
 export const AboutImageContainer = styled.div``
 export const AboutImage = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
+  object-fit: cover;
 `
 export const TitleWrapper = styled.div`
   display: flex;
@@ -30,6 +31,9 @@ export const Title = styled.span`
   font-size: ${(props) => (props.SmallWidth ? '24px' : '30px')};
   margin-top: 20px;
   font-weight: ${(props) => (props.SmallWidth ? 500 : 600)};
+  border-bottom: ${(props) =>
+    props.SmallWidth ? '1px solid #444444' : 'none'};
+  padding: 5px 0;
 `
 export const Subtitle = styled.span`
   margin-top: 10px;
