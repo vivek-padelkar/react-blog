@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import connectDb from './db/config.js'
 import authRoute from './routes/auth.routes.js'
+import userRoute from './routes/users.routes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 
 dotenv.config()
@@ -14,6 +15,7 @@ const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
 
 app.use('/api/auth', authRoute)
+app.use('/api/user', userRoute)
 
 app.use(notFound)
 app.use(errorHandler)
