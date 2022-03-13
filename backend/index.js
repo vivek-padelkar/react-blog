@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import connectDb from './db/config.js'
+import authRoute from './routes/auth.routes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 
 dotenv.config()
@@ -11,6 +12,8 @@ app.use(express.json())
 
 const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
+
+app.use('/api/auth', authRoute)
 
 app.use(notFound)
 app.use(errorHandler)
