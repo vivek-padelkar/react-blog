@@ -11,6 +11,10 @@ const protect = asyncHandler(async (req, res, next) => {
     token = req.headers.authorization.split(' ')[1]
     const { id } = jwt.decode(token, process.env.SECRET)
     if (id) {
+      const user = await User.findById(id).select('-password')
+      if (!user) {
+        throw new Error('Not authorize')
+      }
       req.user = await User.findById(id).select('-password')
       next()
     } else {
