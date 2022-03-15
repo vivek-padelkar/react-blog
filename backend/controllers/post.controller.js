@@ -59,3 +59,21 @@ export const getPost = asyncHandler(async (req, res) => {
     throw Error('Post not found')
   }
 })
+
+export const getAllPost = asyncHandler(async (req, res) => {
+  const username = req.query.user
+  const cat = req.query.cat
+  let posts = ''
+  if (username) {
+    posts = await Post.find({ username })
+  } else if (cat) {
+    posts = await Post.find({
+      categories: {
+        $in: [cat],
+      },
+    })
+  } else {
+    posts = await Post.find()
+  }
+  res.json(posts)
+})

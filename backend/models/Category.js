@@ -12,5 +12,5 @@ const categorySchema = new mongoose.Schema(
   }
 )
 
-const Post = mongoose.model('Category', userSchema)
-export default Post
+const Category = mongoose.model('Category', categorySchema)
+export default Category
