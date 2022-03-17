@@ -61,7 +61,7 @@ export const getPost = asyncHandler(async (req, res) => {
 })
 
 export const getAllPost = asyncHandler(async (req, res) => {
-  const username = req.query.user
+  const username = req.query.username
   const cat = req.query.cat
   let posts = ''
   if (username) {

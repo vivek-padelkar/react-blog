@@ -20,7 +20,10 @@ import {
 const About = () => {
   return (
     <Container>
-      <AboutImage src="/assets/avatar.jpg" alt="image of developer" />
+      <AboutImage
+        src="https://avatars.githubusercontent.com/u/90445381?v=4"
+        alt="image of developer"
+      />
 
       <TitleWrapper>
         <Title>Vivek Padelkar</Title>

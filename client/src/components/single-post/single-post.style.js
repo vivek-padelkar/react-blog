@@ -1,5 +1,11 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+export const StyledLink = styled(Link)`
+  margin-top: 5px;
+  text-decoration: none;
+  color: inherit;
+`
 export const Container = styled.div`
   flex: 9;
   margin-top: 20px;
@@ -17,7 +23,7 @@ export const SinglePostImage = styled.img`
 export const SinglePostTitle = styled.h1`
   text-align: center;
   margin: 10px;
-  font-family: 'Lora', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 28px;
 `
 export const SinglePostEdit = styled.div`

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import {
   Container,
   PostImage,
@@ -7,39 +8,28 @@ import {
   PostTitle,
   PostDate,
   PostDescription,
+  StyledLink,
 } from './post.style'
 
-const Post = () => {
+const Post = ({ post }) => {
   return (
     <Container>
-      <PostImage src="assets/post1.jpg" alt="post by user" />
+      {post.photo && <PostImage src={post.photo} alt="post by user" />}
       <PostInfo>
         <PostCategoryContainer>
-          <PostCategory>Tech</PostCategory>
-          <PostCategory>Life</PostCategory>
+          {post.categories.map((cat) => (
+            <PostCategory key={cat}>{cat}</PostCategory>
+          ))}
         </PostCategoryContainer>
 
-        <PostTitle>Bought new Desktop</PostTitle>
+        <StyledLink to={`/post/${post._id}`}>
+          <PostTitle>{post.title}</PostTitle>
+        </StyledLink>
+
         <hr />
-        <PostDate>1hr ago</PostDate>
+        <PostDate> {moment(post.updatedAt).fromNow()}</PostDate>
       </PostInfo>
-      <PostDescription>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nostrum
-        explicabo libero rerum vitae quod molestias veniam sunt iure sequi, nemo
-        incidunt earum ullam! Sapiente suscipit eius dolorem consequatur fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nostrum
-        explicabo libero rerum vitae quod molestias veniam sunt iure sequi, nemo
-        incidunt earum ullam! Sapiente suscipit eius dolorem consequatur fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nostrum
-        explicabo libero rerum vitae quod molestias veniam sunt iure sequi, nemo
-        incidunt earum ullam! Sapiente suscipit eius dolorem consequatur fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nostrum
-        explicabo libero rerum vitae quod molestias veniam sunt iure sequi, nemo
-        incidunt earum ullam! Sapiente suscipit eius dolorem consequatur fugiat?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nostrum
-        explicabo libero rerum vitae quod molestias veniam sunt iure sequi, nemo
-        incidunt earum ullam! Sapiente suscipit eius dolorem consequatur fugiat?
-      </PostDescription>
+      <PostDescription>{post.desc}</PostDescription>
     </Container>
   )
 }

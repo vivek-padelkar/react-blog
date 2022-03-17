@@ -1,5 +1,11 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+export const StyledLink = styled(Link)`
+  margin-top: 5px;
+  text-decoration: none;
+  color: inherit;
+`
 export const Container = styled.div`
   flex: 3;
   margin: 20px;

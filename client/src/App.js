@@ -8,6 +8,19 @@ import WritePost from './pages/write-post/write-post.component'
 import Register from './pages/register/resgister.component'
 import NotFound from './pages/not-found/not-found.component'
 import About from './pages/about/about.component'
+import Spinner from './components/spinner/spinner.component'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure({
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+})
 
 function App() {
   const user = false

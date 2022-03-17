@@ -1,13 +1,21 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+export const StyledLink = styled(Link)`
+  margin-top: 5px;
+  text-decoration: none;
+  color: inherit;
+`
 export const Container = styled.div`
   width: 385px;
   margin: 25px 25px 40px 25px;
+  border: 1 px solid;
+  box-shadow: 3px 4px 11px -5px #000000;
 `
 export const PostImage = styled.img`
   width: 100%;
   object-fit: cover;
-  height: 280px;
+  height: 250px;
   border-radius: 7px;
 `
 export const PostInfo = styled.div`
@@ -32,6 +40,10 @@ export const PostTitle = styled.span`
   font-weight: 700;
   margin-top: 15px;
   cursor: pointer;
+  :hover {
+    font-weight: bolder;
+    color: #468143;
+  }
 `
 export const PostDate = styled.span`
   font-family: 'Lora', sans-serif;
@@ -53,4 +65,5 @@ export const PostDescription = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  margin-left: 5px;
 `
