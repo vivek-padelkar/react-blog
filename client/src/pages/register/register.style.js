@@ -1,5 +1,11 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+export const StyledLink = styled(Link)`
+  margin-top: 5px;
+  text-decoration: none;
+  color: inherit;
+`
 export const Container = styled.div`
   position: relative;
   height: calc(100vh - 50px);
@@ -53,4 +59,33 @@ export const RegisterButton = styled.button`
     background-color: #7f7f7f;
     color: white;
   }
+`
+
+export const RegisterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: bolder;
+  width: 100%;
+  justify-content: center;
+`
+export const LoginButton = styled.button`
+  margin-top: 8px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: tomato;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  :hover {
+    background-color: #ea8e7d;
+  }
+  width: 100%;
+  display: block;
+`
+
+export const RegistertTitle = styled.span`
+  font-family: 'Lora', sans-serif;
+  margin-top: 15px;
+  text-align: center;
 `

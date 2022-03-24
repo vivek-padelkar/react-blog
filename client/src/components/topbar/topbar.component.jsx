@@ -1,3 +1,6 @@
+import { useContext } from 'react'
+import { Context } from '../../context/context'
+import { loginContants } from '../../context/constants'
 import {
   Container,
   TopLeft,
@@ -12,7 +15,12 @@ import {
 } from './topbar.style'
 
 const Topbar = () => {
-  const user = false
+  const { user, dispatch } = useContext(Context)
+
+  const handleLogout = async (e) => {
+    dispatch({ type: loginContants.LOGOUT })
+  }
+
   return (
     <Container>
       <TopLeft>
@@ -37,17 +45,16 @@ const Topbar = () => {
           </TopCenterLi>
 
           <TopCenterLi>
-            <StyledLink to="/login">{user ? 'LOGOUT' : null}</StyledLink>
+            <StyledLink to="/login" onClick={handleLogout}>
+              {user ? 'LOGOUT' : null}
+            </StyledLink>
           </TopCenterLi>
         </TopCenterUl>
       </TopCenter>
 
       <TopRight>
         {user ? (
-          <TopImage
-            src="https://avatars.githubusercontent.com/u/90445381?v=4"
-            alt="user"
-          />
+          <TopImage src={user.profilePicture} alt="user" />
         ) : (
           <StyledLink to="/login">LOGIN/REGISTER</StyledLink>
         )}

@@ -1,4 +1,7 @@
+import { useContext } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { Context } from './context/context'
 import Login from './pages/login/login.component'
 import Topbar from './components/topbar/topbar.component'
 import Home from './pages/home/homepage.component'
@@ -8,13 +11,11 @@ import WritePost from './pages/write-post/write-post.component'
 import Register from './pages/register/resgister.component'
 import NotFound from './pages/not-found/not-found.component'
 import About from './pages/about/about.component'
-import Spinner from './components/spinner/spinner.component'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure({
-  position: 'top-right',
-  autoClose: 5000,
+  position: 'top-center',
+  autoClose: 4000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -23,7 +24,7 @@ toast.configure({
 })
 
 function App() {
-  const user = false
+  const { user } = useContext(Context)
   return (
     <Router>
       <Topbar />

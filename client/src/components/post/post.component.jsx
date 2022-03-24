@@ -12,9 +12,12 @@ import {
 } from './post.style'
 
 const Post = ({ post }) => {
+  const imagepath = 'http://localhost:5021/uploads/'
   return (
     <Container>
-      {post.photo && <PostImage src={post.photo} alt="post by user" />}
+      {post.photo && (
+        <PostImage src={imagepath + post.photo} alt="post by user" />
+      )}
       <PostInfo>
         <PostCategoryContainer>
           {post.categories.map((cat) => (

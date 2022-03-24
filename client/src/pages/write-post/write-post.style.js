@@ -1,26 +1,35 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
+export const StyledLink = styled(Link)`
+  margin-top: 5px;
+  text-decoration: none;
+  color: inherit;
+`
 export const Container = styled.div`
   padding-top: 50px;
 `
 export const FormWrite = styled.form``
 
 export const WriteFormGroup = styled.div`
-  position: relative;
-  margin-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 export const FileInput = styled.input``
 
 export const TextInput = styled.input`
-  font-size: 30px;
+  margin-top: 20px;
+  font-size: ${(props) => (props.ishasHtag ? '20px' : '30px')};
   border: none;
-  padding: 20px;
+  padding: 10px;
   width: 70vw;
-  :focus {
+  /* :focus {
     outline: none;
-  }
+  } */
 `
 export const BrowseLabel = styled.label`
+  margin-top: 20px;
   display: inline-block;
 `
 
@@ -37,16 +46,14 @@ export const FileIcon = styled.i`
   cursor: pointer;
 `
 export const WriteText = styled.textarea`
+  margin-top: 20px;
   font-size: 20px;
   border: none;
-  padding: 20px;
-  width: 70vw;
-  height: 50vh;
+  padding: 10px;
+  width: 70%;
+  height: 40vh;
 `
 export const WriteSubmit = styled.button`
-  position: absolute;
-  top: 0;
-  right: 300px;
   background-color: teal;
   color: white;
   padding: 10px;
@@ -54,9 +61,10 @@ export const WriteSubmit = styled.button`
   border: none;
   cursor: pointer;
   font-size: 16px;
+  width: 400px;
+  margin-top: 20px;
 `
 export const WriteImage = styled.img`
-  margin-left: 150px;
   width: 70vw;
   height: 250px;
   border-radius: 10px;

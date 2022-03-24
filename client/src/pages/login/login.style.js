@@ -1,4 +1,22 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import CircularProgress from '@mui/material/CircularProgress'
+
+export const StyledLink = styled(Link)`
+  margin-top: 5px;
+  text-decoration: none;
+  color: inherit;
+`
+
+export const StyledCircularProgress = styled(CircularProgress)`
+  color: black;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  color: black;
+  padding: 0;
+  overflow: hidden;
+`
 
 export const Container = styled.div`
   position: relative;
@@ -22,7 +40,7 @@ export const LoginTitle = styled.span`
   position: absolute;
   top: 150px;
 `
-export const LoginForm = styled.div`
+export const LoginForm = styled.form`
   font-family: 'Josefin Sans', sans-serif;
   margin-top: 20px;
   display: flex;

@@ -8,6 +8,7 @@ export const StyledLink = styled(Link)`
 `
 export const Container = styled.div`
   width: 385px;
+  height: 450px;
   margin: 25px 25px 40px 25px;
   border: 1 px solid;
   box-shadow: 3px 4px 11px -5px #000000;

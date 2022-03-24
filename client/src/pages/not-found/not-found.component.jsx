@@ -8,7 +8,7 @@ import {
   StyledLink,
 } from './not-found.style'
 
-const NotFound = () => {
+const NotFound = ({ message }) => {
   return (
     <Container>
       <NotFoundImageContainer>
@@ -16,9 +16,12 @@ const NotFound = () => {
       </NotFoundImageContainer>
       <NotFoundWrapper>
         <NotFoundTitle>Something's wrong here.</NotFoundTitle>
+
         <NotFoundSubTitle>
-          This is a 404 error, which means you've clicked on a bad link or
-          entered an invalid URL.
+          {!message
+            ? `This is a 404 error, which means you've clicked on a bad link or
+          entered an invalid URL.`
+            : message}
         </NotFoundSubTitle>
 
         <NotFoundSubTitle>
