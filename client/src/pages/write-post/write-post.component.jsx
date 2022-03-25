@@ -21,8 +21,9 @@ const WritePost = () => {
   const { user } = useContext(Context)
   const [title, setTitle] = useState('')
   const [desc, setdesc] = useState('')
-  //const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState('')
   const [file, Setfile] = useState('')
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -30,7 +31,9 @@ const WritePost = () => {
         title,
         desc,
         user: user.username,
+        categories: Array.from(categories.split(',')),
       }
+
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -71,18 +74,15 @@ const WritePost = () => {
           {file && (
             <WriteImage src={URL.createObjectURL(file)} alt="post image" />
           )}
-
           <BrowseLabel htmlFor="fileInput">
             <FileIcon className="fas fa-plus" value={file} />
           </BrowseLabel>
-
           <FileInput
             type="file"
             id="fileInput"
             style={{ display: 'none' }}
             onChange={(e) => Setfile(e.target.files[0])}
           />
-
           <TextInput
             type="text"
             placeholder="Title"
@@ -91,14 +91,14 @@ const WritePost = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          {/* <TextInput
+          <TextInput
             ishasHtag={true}
             type="text"
             placeholder="your hastags...(comma (',') seprated)"
             autoFocus={true}
             value={categories}
             onChange={(e) => setCategories(e.target.value)}
-          />*/}
+          />
           <WriteText
             placeholder="Tell your Story..."
             value={desc}

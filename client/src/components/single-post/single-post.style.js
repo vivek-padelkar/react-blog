@@ -70,6 +70,15 @@ export const SinglePostInfo = styled.div`
   color: #b39653;
   font-family: 'Varela Round', sans-serif;
 `
+
+export const SinglePostCategories = styled.div`
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #b39653;
+  font-family: 'Varela Round', sans-serif;
+  display: flex;
+`
+
 export const SinglePostAuthor = styled.span``
 export const SinglePostDate = styled.span``
 

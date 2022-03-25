@@ -83,7 +83,6 @@ const Settings = () => {
       <SettingsWrapper>
         <SettingsTitle>
           <SettingsUpdateTitle> Update your account</SettingsUpdateTitle>
-          <SettingsDeleteTitle> Delete account</SettingsDeleteTitle>
         </SettingsTitle>
 
         <SettingsForm>

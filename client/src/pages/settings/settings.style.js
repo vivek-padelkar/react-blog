@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
+  padding: 50px;
 `
 export const SettingsWrapper = styled.div`
   flex: 9;
@@ -15,7 +16,7 @@ export const SettingsTitle = styled.div`
 export const SettingsUpdateTitle = styled.span`
   font-size: 30px;
   margin-bottom: 20px;
-  color: lightcoral;
+  color: #286a1a;
 `
 export const SettingsDeleteTitle = styled.span`
   color: tomato;

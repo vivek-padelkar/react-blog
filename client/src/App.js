@@ -30,24 +30,31 @@ function App() {
       <Topbar />
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route
           path="/register"
           exact
           element={user ? <Home /> : <Register />}
         />
+
         <Route path="/login" exact element={user ? <Home /> : <Login />} />
+
         <Route
           path="/settings"
           exact
           element={user ? <Settings /> : <Login />}
         />
+
         <Route
           path="/writepost"
           exact
           element={user ? <WritePost /> : <Login />}
         />
+
         <Route path="/post/:postid" exact element={<SinglePost />} />
+
         <Route path="/about" exact element={<About />} />
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

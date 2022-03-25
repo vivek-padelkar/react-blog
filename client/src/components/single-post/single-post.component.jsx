@@ -27,6 +27,7 @@ import {
   ButtonPost,
   DisableEditIcon,
   DisableEditWrapper,
+  SinglePostCategories,
 } from './single-post.style'
 import { toast } from 'react-toastify'
 import DailogueBox from '../dailogueBox/dailogueBox.component'
@@ -44,6 +45,7 @@ const SinglePost = () => {
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
+  const [categories, setCategories] = useState('')
   const [updateMode, setUpdateMode] = useState(false)
 
   const [file, setFile] = useState('')
@@ -54,6 +56,7 @@ const SinglePost = () => {
         setPost(data)
         setTitle(data.title)
         setDesc(data.desc)
+        setCategories(data.categories)
       } catch (error) {
         toast.error(error.message)
       }
@@ -77,26 +80,42 @@ const SinglePost = () => {
     }
   }
 
-  const handleUpdate = async () => {
-    const data = {
-      username: user.username,
-      title,
-      desc,
-    }
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+    try {
+      if (!title || !desc) {
+        return toast.error('Title & desc is mandetory')
+      }
 
-    if (file) {
-      const photo = await uploadFileHandler(file)
-      data.photo = photo
-    }
+      const data = {
+        username: user.username,
+        title,
+        desc,
+      }
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
+      if (categories) {
+        if (categories.split(',').length <= 0) {
+          return toast.error('Please enter each category seprated by comma')
+        }
+        data.categories = Array.from(categories.split(','))
+      }
+
+      if (file) {
+        const photo = await uploadFileHandler(file)
+        data.photo = photo
+      }
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+      await axios.put(`/post/${postId}`, data, config)
+      toast.success('Post deleted successfully !')
+      window.location.reload()
+    } catch (error) {
+      toast.error(error.messsage)
     }
-    await axios.put(`/post/${postId}`, data, config)
-    toast.success('Post deleted successfully !')
-    window.location.reload()
   }
 
   const uploadFileHandler = async (file) => {
@@ -163,6 +182,7 @@ const SinglePost = () => {
             <TextInput
               type="text"
               value={title}
+              placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
             />
           ) : (
@@ -191,6 +211,26 @@ const SinglePost = () => {
             </SinglePostTitle>
           )}
 
+          {updateMode && (
+            <TextInput
+              type="text"
+              placeholder="your hastags...(comma (',') seprated)"
+              value={categories}
+              onChange={(e) => setCategories(e.target.value)}
+            />
+          )}
+
+          {Array.isArray(categories) && categories.length > 0 ? (
+            <SinglePostCategories>
+              <SinglePostAuthor>categories:</SinglePostAuthor>
+              {categories.map((cat) => (
+                <span key={Date.now() + cat}>
+                  <b>{cat}</b>
+                </span>
+              ))}
+            </SinglePostCategories>
+          ) : null}
+
           <SinglePostInfo>
             <SinglePostAuthor>
               Author:
@@ -204,13 +244,17 @@ const SinglePost = () => {
           </SinglePostInfo>
 
           {updateMode ? (
-            <WriteText value={desc} onChange={(e) => setDesc(e.target.value)} />
+            <WriteText
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+              placeholder="Tell your Story..."
+            />
           ) : (
             <SinglePostDesc>{post.desc}</SinglePostDesc>
           )}
 
           {updateMode && (
-            <ButtonPost onClick={(e) => handleUpdate()}>Update</ButtonPost>
+            <ButtonPost onClick={(e) => handleUpdate(e)}>Update</ButtonPost>
           )}
         </SinglePostWrapper>
       ) : (
