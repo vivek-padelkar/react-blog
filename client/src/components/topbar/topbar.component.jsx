@@ -15,6 +15,7 @@ import {
 } from './topbar.style'
 
 const Topbar = () => {
+  const imagepath = 'http://localhost:5021/uploads/'
   const { user, dispatch } = useContext(Context)
 
   const handleLogout = async (e) => {
@@ -54,7 +55,9 @@ const Topbar = () => {
 
       <TopRight>
         {user ? (
-          <TopImage src={user.profilePicture} alt="user" />
+          <StyledLink to="/settings">
+            <TopImage src={imagepath + user.profilePicture} alt="user" />
+          </StyledLink>
         ) : (
           <StyledLink to="/login">LOGIN/REGISTER</StyledLink>
         )}

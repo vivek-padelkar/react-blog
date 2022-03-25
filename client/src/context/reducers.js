@@ -28,6 +28,25 @@ export const LoginReducer = (state, action) => {
         isFeatching: false,
         error: null,
       }
+    case loginContants.UPDATE_START:
+      return {
+        ...state,
+        isFeatching: true,
+      }
+    case loginContants.UPDATE_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        isFeatching: false,
+        error: null,
+      }
+    case loginContants.UPDATE_FAIL:
+      return {
+        ...state,
+        user: state.user,
+        isFeatching: false,
+        error: action.payload,
+      }
     default:
       return state
   }

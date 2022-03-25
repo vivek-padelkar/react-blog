@@ -18,6 +18,15 @@ import {
   SinglePostDate,
   SinglePostDesc,
   StyledLink,
+  TextInput,
+  WriteText,
+  EditTitle,
+  FileIcon,
+  FileInput,
+  BrowseLabel,
+  ButtonPost,
+  DisableEditIcon,
+  DisableEditWrapper,
 } from './single-post.style'
 import { toast } from 'react-toastify'
 import DailogueBox from '../dailogueBox/dailogueBox.component'
@@ -35,12 +44,16 @@ const SinglePost = () => {
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
+  const [updateMode, setUpdateMode] = useState(false)
 
+  const [file, setFile] = useState('')
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const { data } = await axios.get(`/post/${postId}`)
         setPost(data)
+        setTitle(data.title)
+        setDesc(data.desc)
       } catch (error) {
         toast.error(error.message)
       }
@@ -63,6 +76,44 @@ const SinglePost = () => {
       toast.error(error.response.data.message)
     }
   }
+
+  const handleUpdate = async () => {
+    const data = {
+      username: user.username,
+      title,
+      desc,
+    }
+
+    if (file) {
+      const photo = await uploadFileHandler(file)
+      data.photo = photo
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    }
+    await axios.put(`/post/${postId}`, data, config)
+    toast.success('Post deleted successfully !')
+    window.location.reload()
+  }
+
+  const uploadFileHandler = async (file) => {
+    const formData = new FormData()
+    formData.append('image', file)
+
+    try {
+      const config = {
+        'Content-Type': 'multipart/form-data',
+      }
+      const { data } = await axios.post('/upload', formData, config)
+      return data.split('/')[2]
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Container>
       <DailogueBox
@@ -75,24 +126,70 @@ const SinglePost = () => {
       {post.title ? (
         <SinglePostWrapper>
           {post.photo && (
-            <SinglePostImage src={imagepath + post.photo} alt="post by user" />
+            <SinglePostImage
+              src={
+                updateMode && file
+                  ? URL.createObjectURL(file)
+                  : imagepath + post.photo
+              }
+              alt="post by user"
+            />
           )}
 
-          <SinglePostTitle>
-            {post.title}
-            {post.username === user.username ? (
-              <SinglePostEdit>
-                <EditIcon className="fa-solid fa-pen-to-square" />
-                <DeleteIcon
-                  className="fa-solid fa-trash"
-                  onClick={() => {
-                    setDailgueMessage('Do you Really, want to delete the post?')
-                    setOpenDailgue(true)
-                  }}
-                />
-              </SinglePostEdit>
-            ) : null}
-          </SinglePostTitle>
+          {updateMode && (
+            <BrowseLabel htmlFor="fileInput">
+              <FileIcon className="fas fa-plus" value={file} />
+            </BrowseLabel>
+          )}
+
+          {updateMode && (
+            <DisableEditWrapper>
+              <EditTitle>Stop Editing</EditTitle>
+              <DisableEditIcon
+                className="fa-solid fa-xmark"
+                onClick={(e) => setUpdateMode(false)}
+              />
+            </DisableEditWrapper>
+          )}
+
+          <FileInput
+            type="file"
+            id="fileInput"
+            style={{ display: 'none' }}
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+
+          {updateMode ? (
+            <TextInput
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          ) : (
+            <SinglePostTitle>
+              {post.title}
+              {post.username === user.username ? (
+                <SinglePostEdit>
+                  <EditIcon
+                    className="fa-solid fa-pen-to-square"
+                    onClick={(e) => {
+                      setUpdateMode(true)
+                    }}
+                  />
+
+                  <DeleteIcon
+                    className="fa-solid fa-trash"
+                    onClick={() => {
+                      setDailgueMessage(
+                        'Do you Really, want to delete the post?'
+                      )
+                      setOpenDailgue(true)
+                    }}
+                  />
+                </SinglePostEdit>
+              ) : null}
+            </SinglePostTitle>
+          )}
 
           <SinglePostInfo>
             <SinglePostAuthor>
@@ -106,7 +203,15 @@ const SinglePost = () => {
             </SinglePostDate>
           </SinglePostInfo>
 
-          <SinglePostDesc>{post.desc}</SinglePostDesc>
+          {updateMode ? (
+            <WriteText value={desc} onChange={(e) => setDesc(e.target.value)} />
+          ) : (
+            <SinglePostDesc>{post.desc}</SinglePostDesc>
+          )}
+
+          {updateMode && (
+            <ButtonPost onClick={(e) => handleUpdate()}>Update</ButtonPost>
+          )}
         </SinglePostWrapper>
       ) : (
         <Spinner />

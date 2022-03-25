@@ -69,6 +69,7 @@ export const TopImage = styled.img`
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 `
 export const SearchIcon = styled.i`
   font-size: 18px;
