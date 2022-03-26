@@ -8,6 +8,7 @@ import postRoute from './routes/posts.routes.js'
 import uploadRoutes from './routes/upload.routes.js'
 import categoryRoute from './routes/category.routes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
+import enforce from 'express-sslify'
 
 dotenv.config()
 await connectDb()
@@ -37,6 +38,9 @@ if (process.env.NODE_ENV === 'PROD') {
   })
 }
 
+app.get('/service-worker.js', (req, res) => {
+  res.send(path.resolve(__dirname, 'client', 'build', 'service-woker.js'))
+})
 app.use(notFound)
 app.use(errorHandler)
 
