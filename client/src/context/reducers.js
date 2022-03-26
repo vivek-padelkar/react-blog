@@ -34,6 +34,16 @@ export const LoginReducer = (state, action) => {
         isFeatching: true,
       }
     case loginContants.UPDATE_SUCCESS:
+      const { bio, email, profilePicture, username } = action.payload
+      //const user = { ...state, user: {user.id :'a'} }
+      const { user, ...others } = state
+      user.bio = bio
+      user.email = email
+      user.profilePicture = profilePicture
+      user.username = username
+      action.payload = {
+        ...user,
+      }
       return {
         ...state,
         user: action.payload,

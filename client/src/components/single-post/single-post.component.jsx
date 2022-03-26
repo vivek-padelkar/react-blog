@@ -52,12 +52,13 @@ const SinglePost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { data } = await axios.get(`/post/${postId}`)
+        const { data } = await axios.get(`/api/post/${postId}`)
         setPost(data)
         setTitle(data.title)
         setDesc(data.desc)
         setCategories(data.categories)
       } catch (error) {
+        console.log(error.message)
         toast.error(error.message)
       }
     }
@@ -71,12 +72,13 @@ const SinglePost = () => {
           Authorization: `Bearer ${user.token}`,
         },
       }
-      await axios.delete(`/post/${postId}`, config)
+      await axios.delete(`/api/post/${postId}`, config)
       toast.success('Post deleted successfully !')
       setOpenDailgue(false)
       navigate('/')
     } catch (error) {
       toast.error(error.response.data.message)
+      console.log(error)
     }
   }
 
@@ -110,11 +112,12 @@ const SinglePost = () => {
           Authorization: `Bearer ${user.token}`,
         },
       }
-      await axios.put(`/post/${postId}`, data, config)
+      await axios.put(`/api/post/${postId}`, data, config)
       toast.success('Post deleted successfully !')
       window.location.reload()
     } catch (error) {
       toast.error(error.messsage)
+      console.log(error)
     }
   }
 
@@ -126,7 +129,7 @@ const SinglePost = () => {
       const config = {
         'Content-Type': 'multipart/form-data',
       }
-      const { data } = await axios.post('/upload', formData, config)
+      const { data } = await axios.post('/api/upload', formData, config)
       return data.split('/')[2]
     } catch (error) {
       console.log(error)

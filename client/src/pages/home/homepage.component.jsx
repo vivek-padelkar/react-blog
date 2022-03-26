@@ -16,9 +16,10 @@ const Home = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { data } = await axios.get('/post' + search)
+        const { data } = await axios.get('/api/post' + search)
         setPosts(data)
       } catch (error) {
+        console.log(error)
         toast.error(error.message)
       }
     }

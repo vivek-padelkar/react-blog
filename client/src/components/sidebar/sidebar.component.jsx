@@ -29,11 +29,12 @@ const Sidebar = () => {
       }
       try {
         const { data } = await axios.get(
-          `/category/getusercat/?username=${user.username}`,
+          `/api/category/getusercat/?username=${user.username}`,
           config
         )
         setCat(data.cat)
       } catch (error) {
+        console.log(error.message)
         toast.error(error.message)
       }
     }

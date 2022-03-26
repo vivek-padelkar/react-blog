@@ -37,9 +37,11 @@ const Settings = () => {
         username,
         email,
         bio,
-        password,
       }
 
+      if (password) {
+        reqData.password = password
+      }
       if (file) {
         const photo = await uploadFileHandler(file)
         reqData.profilePicture = photo
@@ -50,10 +52,11 @@ const Settings = () => {
           Authorization: `Bearer ${user.token}`,
         },
       }
-      const { data } = await axios.put(`/user/${user._id}`, reqData, config)
+      const { data } = await axios.put(`/api/user/${user._id}`, reqData, config)
       dispatch({ type: loginContants.UPDATE_SUCCESS, payload: data })
       toast.success('Profile has been updated successfully !')
     } catch (error) {
+      console.log(error)
       dispatch({
         type: loginContants.UPDATE_FAIL,
         payload: error.response.data.message,
@@ -70,9 +73,10 @@ const Settings = () => {
       const config = {
         'Content-Type': 'multipart/form-data',
       }
-      const { data } = await axios.post('/upload', formData, config)
+      const { data } = await axios.post('/api/upload', formData, config)
       return data.split('/')[2]
     } catch (error) {
+      console.log(error)
       toast.error(error.response.data.message)
       console.log(error)
     }
@@ -92,7 +96,9 @@ const Settings = () => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : imagepath + user.profilePicture
+                  : user.profilePicture
+                  ? imagepath + user.profilePicture
+                  : 'https://www.cmrad.com/images/no-avatar.png?91eb3221c85873fb856995c8791edd66'
               }
               alt="selected image"
             />

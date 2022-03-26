@@ -55,7 +55,14 @@ const Topbar = () => {
       <TopRight>
         {user ? (
           <StyledLink to="/settings">
-            <TopImage src={imagepath + user.profilePicture} alt="user" />
+            <TopImage
+              src={
+                user.profilePicture
+                  ? imagepath + user.profilePicture
+                  : 'https://www.cmrad.com/images/no-avatar.png?91eb3221c85873fb856995c8791edd66'
+              }
+              alt="user"
+            />
           </StyledLink>
         ) : (
           <StyledLink to="/login">LOGIN/REGISTER</StyledLink>

@@ -72,6 +72,7 @@ export const TopImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+  margin-top: 2px;
 `
 export const TopIcon = styled.i`
   font-size: 20px;

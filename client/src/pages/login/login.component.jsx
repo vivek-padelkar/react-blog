@@ -28,7 +28,7 @@ const Login = () => {
     dispatch({ type: loginContants.LOGIN_START })
 
     try {
-      const { data } = await axios.post('/auth/login', {
+      const { data } = await axios.post('/api/auth/login', {
         username: userRef.current.value,
         password: passwordRef.current.value,
       })

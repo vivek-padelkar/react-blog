@@ -43,7 +43,7 @@ const WritePost = () => {
         const photo = await uploadFileHandler(file)
         newPost.photo = photo
       }
-      await axios.post('/post/', newPost, config)
+      await axios.post('/api/post/', newPost, config)
       toast.success('Post added sucessfully!')
       navigate('/')
     } catch (error) {
@@ -60,7 +60,7 @@ const WritePost = () => {
       const config = {
         'Content-Type': 'multipart/form-data',
       }
-      const { data } = await axios.post('/upload', formData, config)
+      const { data } = await axios.post('/api/upload', formData, config)
       return data.split('/')[2]
     } catch (error) {
       console.log(error)

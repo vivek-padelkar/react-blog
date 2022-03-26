@@ -36,9 +36,10 @@ const Register = () => {
         password,
       }
       try {
-        const { data } = await axios.post('/auth/register', reqData, config)
+        const { data } = await axios.post('/api/auth/register', reqData, config)
         data && window.location.replace('/login')
       } catch (error) {
+        console.log(error)
         toast.error(error.response.data.message)
       }
     }
