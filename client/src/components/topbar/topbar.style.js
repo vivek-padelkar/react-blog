@@ -4,6 +4,7 @@ import { mobile } from '../../utils/responsive'
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+  color: inherit;
 `
 export const Container = styled.div`
   width: 100%;
@@ -16,8 +17,6 @@ export const Container = styled.div`
   justify-content: center;
   font-family: 'Josefin Sans', sans-serif;
   z-index: 999;
-  @media screen and (max-width: 800px) {
-  }
 `
 
 export const TopLeft = styled.div`
@@ -34,9 +33,9 @@ export const TopCenter = styled.div`
   flex: 6;
 
   @media screen and (max-width: 800px) {
-    flex: 7;
     display: flex;
     justify-content: space-between;
+    margin: 10px;
   }
 `
 
@@ -47,6 +46,9 @@ export const TopRight = styled.div`
   justify-content: center;
 
   @media screen and (max-width: 800px) {
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
   }
 `
 export const TopCenterUl = styled.ul`
@@ -61,7 +63,7 @@ export const TopCenterUl = styled.ul`
 `
 export const TopCenterLi = styled.li`
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
 `
 export const TopImage = styled.img`
@@ -70,12 +72,6 @@ export const TopImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
-`
-export const SearchIcon = styled.i`
-  font-size: 18px;
-  color: #666;
-  cursor: pointer;
-  margin-left: 15px;
 `
 export const TopIcon = styled.i`
   font-size: 20px;

@@ -9,6 +9,7 @@ export const StyledLink = styled(Link)`
 export const Container = styled.div`
   flex: 9;
   margin-top: 20px;
+  box-shadow: 3px 4px 11px -5px #000000;
 `
 export const SinglePostWrapper = styled.div`
   padding: 20px;

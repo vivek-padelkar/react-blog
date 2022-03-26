@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Header from '../../components/header/header.component'
 import Posts from '../../components/posts/posts.component'
 import Sidebar from '../../components/sidebar/sidebar.component'
@@ -6,8 +6,10 @@ import { Container } from './home.style'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
+import { Context } from '../../context/context.js'
 
 const Home = () => {
+  const { user } = useContext(Context)
   const [posts, setPosts] = useState([])
   const { search } = useLocation()
   console.log('search' + search)
@@ -28,7 +30,7 @@ const Home = () => {
       <Header />
       <Container>
         <Posts posts={posts} />
-        <Sidebar />
+        {user && <Sidebar />}
       </Container>
     </>
   )

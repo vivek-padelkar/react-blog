@@ -10,7 +10,6 @@ import {
   TopCenterLi,
   TopImage,
   TopIcon,
-  SearchIcon,
   StyledLink,
 } from './topbar.style'
 
@@ -61,8 +60,6 @@ const Topbar = () => {
         ) : (
           <StyledLink to="/login">LOGIN/REGISTER</StyledLink>
         )}
-
-        <SearchIcon className="fa-solid fa-magnifying-glass" />
       </TopRight>
     </Container>
   )

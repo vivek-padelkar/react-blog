@@ -15,6 +15,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+    width: 100%;
+  }
 `
 export const SideBarItem = styled.div`
   display: flex;

@@ -144,7 +144,6 @@ const Settings = () => {
           </SettingsSubmit>
         </SettingsForm>
       </SettingsWrapper>
-      <Sidebar />
     </Container>
   )
 }

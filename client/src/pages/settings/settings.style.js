@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   padding: 50px;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `
 export const SettingsWrapper = styled.div`
   flex: 9;
