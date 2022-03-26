@@ -61,7 +61,7 @@ const WritePost = () => {
         'Content-Type': 'multipart/form-data',
       }
       const { data } = await axios.post('/api/upload', formData, config)
-      return data.split('/')[2]
+      return data.split('/')[4]
     } catch (error) {
       console.log(error)
     }

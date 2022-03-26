@@ -35,7 +35,6 @@ import DailogueBox from '../dailogueBox/dailogueBox.component'
 const SinglePost = () => {
   const { user } = useContext(Context)
   const navigate = useNavigate()
-  const imagepath = 'http://localhost:5021/uploads/'
   const location = useLocation()
   const [post, setPost] = useState({})
   const postId = location.pathname.split('/')[2]
@@ -45,7 +44,7 @@ const SinglePost = () => {
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
-  const [categories, setCategories] = useState('')
+  const [categories, setCategories] = useState([])
   const [updateMode, setUpdateMode] = useState(false)
 
   const [file, setFile] = useState('')
@@ -56,7 +55,7 @@ const SinglePost = () => {
         setPost(data)
         setTitle(data.title)
         setDesc(data.desc)
-        setCategories(data.categories)
+        setCategories(data.categories[0] === '' ? '' : data.categories)
       } catch (error) {
         console.log(error.message)
         toast.error(error.message)
@@ -130,7 +129,7 @@ const SinglePost = () => {
         'Content-Type': 'multipart/form-data',
       }
       const { data } = await axios.post('/api/upload', formData, config)
-      return data.split('/')[2]
+      return data.split('/')[4]
     } catch (error) {
       console.log(error)
     }
@@ -152,7 +151,7 @@ const SinglePost = () => {
               src={
                 updateMode && file
                   ? URL.createObjectURL(file)
-                  : imagepath + post.photo
+                  : `/uploads/${post.photo}`
               }
               alt="post by user"
             />

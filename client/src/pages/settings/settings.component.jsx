@@ -27,7 +27,6 @@ const Settings = () => {
   const [email, setEmail] = useState(user.email)
   const [file, setFile] = useState('')
   const [password, setPassword] = useState('')
-  const imagepath = 'http://localhost:5021/uploads/'
 
   const handleUpdate = async (e) => {
     e.preventDefault()
@@ -74,7 +73,7 @@ const Settings = () => {
         'Content-Type': 'multipart/form-data',
       }
       const { data } = await axios.post('/api/upload', formData, config)
-      return data.split('/')[2]
+      return data.split('/')[4]
     } catch (error) {
       console.log(error)
       toast.error(error.response.data.message)
@@ -97,7 +96,7 @@ const Settings = () => {
                 file
                   ? URL.createObjectURL(file)
                   : user.profilePicture
-                  ? imagepath + user.profilePicture
+                  ? `/uploads/${user.profilePicture}`
                   : 'https://www.cmrad.com/images/no-avatar.png?91eb3221c85873fb856995c8791edd66'
               }
               alt="selected image"

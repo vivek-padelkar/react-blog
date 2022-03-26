@@ -14,7 +14,6 @@ import {
 } from './topbar.style'
 
 const Topbar = () => {
-  const imagepath = 'http://localhost:5021/uploads/'
   const { user, dispatch } = useContext(Context)
 
   const handleLogout = async (e) => {
@@ -58,7 +57,7 @@ const Topbar = () => {
             <TopImage
               src={
                 user.profilePicture
-                  ? imagepath + user.profilePicture
+                  ? `/uploads/${user.profilePicture}`
                   : 'https://www.cmrad.com/images/no-avatar.png?91eb3221c85873fb856995c8791edd66'
               }
               alt="user"
