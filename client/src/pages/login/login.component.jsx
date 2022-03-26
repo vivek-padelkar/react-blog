@@ -64,7 +64,7 @@ const Login = () => {
       </LoginForm>
 
       <RegisterWrapper>
-        <RegistertTitle>New to Bloggspot ?</RegistertTitle>
+        <RegistertTitle>New to mybloggz ?</RegistertTitle>
         <StyledLink to="/register">
           <RegisterButton>Register</RegisterButton>
         </StyledLink>
