@@ -56,6 +56,7 @@ app.get('/service-worker.js', (req, res) => {
 
 app.use(notFound)
 app.use(errorHandler)
+
 app.listen(PORT, () => {
   console.log(
     `Backend server is running: ${NODE_ENV} enivronmet,  http://localhost:${PORT}/`
