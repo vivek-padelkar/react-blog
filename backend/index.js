@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+import cors from 'cors'
 import express from 'express'
 import path from 'path'
 import connectDb from './db/config.js'
@@ -9,12 +10,18 @@ import uploadRoutes from './routes/upload.routes.js'
 import categoryRoute from './routes/category.routes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 import enforce from 'express-sslify'
+import compression from 'compression'
 
 dotenv.config()
+
 await connectDb()
+
 const app = express()
 
+app.use(compression())
 app.use(express.json())
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
+app.use(cors())
 
 const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
@@ -36,11 +43,17 @@ if (process.env.NODE_ENV === 'PROD') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running !!')
+  })
 }
 
 app.get('/service-worker.js', (req, res) => {
+  console.log('service worker API called')
   res.send(path.resolve(__dirname, 'client', 'build', 'service-woker.js'))
 })
+
 app.use(notFound)
 app.use(errorHandler)
 
