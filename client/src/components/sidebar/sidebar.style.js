@@ -18,7 +18,6 @@ export const Container = styled.div`
 
   @media screen and (max-width: 800px) {
     display: block;
-    width: 100%;
   }
 `
 export const SideBarItem = styled.div`

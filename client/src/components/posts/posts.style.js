@@ -6,7 +6,8 @@ export const Container = styled.div`
   flex-wrap: wrap;
 
   @media screen and (max-width: 800px) {
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `
 export const NoPostContainer = styled.div`

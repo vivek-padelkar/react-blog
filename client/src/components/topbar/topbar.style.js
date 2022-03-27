@@ -17,6 +17,8 @@ export const Container = styled.div`
   justify-content: center;
   font-family: 'Josefin Sans', sans-serif;
   z-index: 999;
+  @media screen and (max-width: 800px) {
+  }
 `
 
 export const TopLeft = styled.div`
@@ -33,9 +35,7 @@ export const TopCenter = styled.div`
   flex: 6;
 
   @media screen and (max-width: 800px) {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
+    flex-direction: column;
   }
 `
 
