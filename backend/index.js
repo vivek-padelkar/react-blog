@@ -18,9 +18,9 @@ await connectDb()
 
 const app = express()
 
-app.use(compression())
+// app.use(compression())
 app.use(express.json())
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+// app.use(enforce.HTTPS({ trustProtoHeader: true }))
 app.use(cors())
 
 const PORT = process.env.PORT

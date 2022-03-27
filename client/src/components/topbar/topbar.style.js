@@ -17,8 +17,6 @@ export const Container = styled.div`
   justify-content: center;
   font-family: 'Josefin Sans', sans-serif;
   z-index: 999;
-  @media screen and (max-width: 800px) {
-  }
 `
 
 export const TopLeft = styled.div`
@@ -36,6 +34,7 @@ export const TopCenter = styled.div`
 
   @media screen and (max-width: 800px) {
     flex-direction: column;
+    padding-left: 20px;
   }
 `
 
@@ -65,6 +64,9 @@ export const TopCenterLi = styled.li`
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
+  @media screen and (max-width: 800px) {
+    font-size: 16px;
+  }
 `
 export const TopImage = styled.img`
   width: 40px;

@@ -14,7 +14,7 @@ export const Container = styled.div`
   box-shadow: 3px 4px 11px -5px #000000;
 
   @media screen and (max-width: 800px) {
-    margin: 25px 25px;
+    margin: 25px 0px;
   }
 `
 export const PostImage = styled.img`
